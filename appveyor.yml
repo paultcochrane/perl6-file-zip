@@ -15,7 +15,6 @@ install:
   - ps: git clone https://github.com/ugexe/zef.git
   - ps: dir C:\rakubrew
   - ps: rakubrew build zef
-  - ps: cd $Env:APPVEYOR_BUILD_FOLDER
   - ps: zef --verbose --deps-only install .
 
 build: off
