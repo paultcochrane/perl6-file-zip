@@ -12,8 +12,6 @@ install:
   - ps: rakubrew mode shim
   - ps: rakubrew download
   - ps: $env:GIT_REDIRECT_STDERR = '2>&1'
-  - ps: git clone https://github.com/ugexe/zef.git
-  - ps: dir C:\rakubrew
   - ps: rakubrew build zef
   - ps: zef --verbose --deps-only install .
 
