@@ -12,7 +12,6 @@ install:
   - rakubrew mode shim
   - rakubrew download
   - rakubrew build zef
-  - cd %APPVEYOR_BUILD_FOLDER%
   - zef --verbose --deps-only install .
 
 build: off
