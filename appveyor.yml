@@ -5,7 +5,6 @@ platform: x64
 install:
   - ps: choco install strawberryperl
   - ps: refreshenv
-    # - ps: $Env:Path = "C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;$Env:Path"
   - ps: . {iwr -useb https://rakubrew.org/install-on-powershell.ps1 } | iex
   - ps: $Env:Path = "C:\rakubrew\bin;$Env:Path"
   - ps: $Env:Path = "$(rakubrew home)/shims;$Env:Path"
