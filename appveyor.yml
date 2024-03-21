@@ -3,21 +3,23 @@ os: Visual Studio 2015
 platform: x64
 
 install:
-  - '"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /x64'
-  - choco install strawberryperl
-  - SET PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;%PATH%
-  - curl https://rakubrew.org/install-on-cmd.bat -o install-on-cmd.bat && install-on-cmd.bat
-  - SET PATH=C:\rakubrew\bin;%PATH%
-  - 'FOR /F "delims=" %%i IN (''rakubrew home'') DO SET PATH=%%i/shims;%PATH%'
-  - rakubrew mode shim
-  - rakubrew download
-  - rakubrew build zef
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - zef --verbose --deps-only install .
+  - ps: choco install strawberryperl
+  - ps: refreshenv
+    # - ps: $Env:Path = "C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;$Env:Path"
+  - ps: . {iwr -useb https://rakubrew.org/install-on-powershell.ps1 } | iex
+  - ps: $Env:Path = "C:\rakubrew\bin;$Env:Path"
+  - ps: $Env:Path = "$(rakubrew home)/shims;$Env:Path"
+  - ps: rakubrew mode shim
+  - ps: rakubrew download
+  - ps: git clone https://github.com/ugexe/zef.git
+  - ps: dir C:\rakubrew
+  - ps: rakubrew build zef
+  - ps: cd $Env:APPVEYOR_BUILD_FOLDER
+  - ps: zef --verbose --deps-only install .
 
 build: off
 
 test_script:
-  - prove -v -e "perl6 -Ilib" t/
+  - prove -v -e "raku -Ilib" t/
 
 shallow_clone: true
