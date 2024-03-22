@@ -5,8 +5,7 @@ platform: x64
 
 install:
   - ps: 'if ( -not (Test-Path -Path "C:\Strawberry") ) {
-      choco install strawberryperl -y
-      refreshenv
+      choco install strawberryperl -y; refreshenv
     }
     else {
       $Env:Path = "C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;$Env:Path"
