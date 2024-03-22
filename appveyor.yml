@@ -1,11 +1,13 @@
 image:
-  - Visual Studio 2017
+  - Visual Studio 2019
 
 platform: x64
 
 install:
   - ps: 'if ( -not (Test-Path -Path "C:\Strawberry") ) { choco install strawberryperl -y }'
+  - ps: Write-Output $Env:Path
   - ps: refreshenv
+  - ps: Write-Output $Env:Path
   - ps: . {iwr -useb https://rakubrew.org/install-on-powershell.ps1 } | iex
   - ps: $Env:Path = "C:\rakubrew\bin;$Env:Path"
   - ps: $Env:Path = "$(rakubrew home)/shims;$Env:Path"
