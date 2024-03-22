@@ -31,5 +31,5 @@ test_script:
 
 shallow_clone: true
 
-cache:
-  - 'C:\Strawberry'
+  # cache:
+  #   - 'C:\Strawberry'
