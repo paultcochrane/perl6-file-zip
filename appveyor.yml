@@ -4,7 +4,7 @@ image:
 platform: x64
 
 install:
-  - ps: choco install strawberryperl
+  - ps: 'if ( -not (Test-Path -Path "C:\Strawberry") ) { choco install strawberryperl -y }'
   - ps: refreshenv
   - ps: . {iwr -useb https://rakubrew.org/install-on-powershell.ps1 } | iex
   - ps: $Env:Path = "C:\rakubrew\bin;$Env:Path"
@@ -25,3 +25,6 @@ test_script:
   - prove -v -e "raku -Ilib" t/
 
 shallow_clone: true
+
+cache:
+  - 'C:\Strawberry'
