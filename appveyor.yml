@@ -20,7 +20,8 @@ install:
 build: off
 
 test_script:
-  - prove -v -e "raku -Ilib" t/
+  - ps: $Env:Path = "C:\Strawberry\perl\bin;$Env:Path"
+  - ps: prove -v -e "raku -Ilib" t/
 
 shallow_clone: true
 
