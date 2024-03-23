@@ -24,6 +24,3 @@ test_script:
   - ps: prove -v -e "raku -Ilib" t/
 
 shallow_clone: true
-
-  # cache:
-  #   - 'C:\Strawberry'
