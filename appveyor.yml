@@ -1,5 +1,4 @@
-image:
-  - Visual Studio 2022
+image: Visual Studio 2022
 
 platform: x64
 
@@ -9,10 +8,11 @@ install:
   - ps: $Env:Path = "$(rakubrew home)/shims;$Env:Path"
   - ps: rakubrew mode shim
   - ps: rakubrew download
-  # git reports success to stderr on PowerShell, causing errors to be raised
-  # hence redirect stderr to stdout.
-  # See https://stackoverflow.com/a/47232450/10874800 and
-  # https://stackoverflow.com/a/54624579/10874800 for more details.
+  # Git reports "chatty" output to stderr thus causing errors to be raised on
+  # PowerShell, hence we redirect stderr to stdout here.
+  # See https://stackoverflow.com/a/47232450/10874800,
+  # https://stackoverflow.com/a/54624579/10874800 and
+  # https://stackoverflow.com/a/37561629/10874800 for more details.
   - ps: $env:GIT_REDIRECT_STDERR = '2>&1'
   - ps: rakubrew build zef
   - ps: zef --verbose --deps-only install .
